@@ -5,7 +5,7 @@ let genres;
 let genreId = [];
 const startingUrl = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2'
 const pageNumber = 1
-const query = 'us'
+const query = 'usa'
 const API = `https://api.themoviedb.org/3/search/movie?api_key=ffddee44025dd24685ea61d637d56d24&language=en-US&query=${query}&page=${pageNumber}&include_adult=false`
 fetch(API)
 .then(res => res.json())
@@ -20,9 +20,9 @@ fetch(API)
         </div>`) 
         console.log(el.genre_ids);
     })
-        const s = genreId.map(el => {
+        const s = genreId.find(el => {
             console.log('el',el);
-           getGenres(...el)
+           getGenres(el)
         })
 
         console.log('s', s);
@@ -42,21 +42,23 @@ function getGenres(id) {
 //                    }
 //                })}
 // `           })
+           
            const div =document.querySelectorAll('.movie-card');
            genres = data.genres
         //    console.log(genres);
 
-           const p = () => genres.forEach(el => { 
+           const p = genres.forEach(el => { 
               if (el.id === id) {
                    console.log(el.name);
-                  return el.name
+                  div.forEach(elem => {
+                       elem.insertAdjacentHTML('beforeend', `<p>${el.name}</p>`)
+                   })
                }
            })
            
-           console.log('p', p);
-         return  div.forEach(el => {
-              return el.insertAdjacentHTML('beforeend', `<p>${p()}</p>`)
-           })
+ 
+             
+          
           /* `<p>${data.genres[0].name}<p/>`  */
         }))
 }
