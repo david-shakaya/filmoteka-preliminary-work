@@ -4,11 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 </head>
 <body>
     <div class="add">
         <!-- <img src="/soAl3j6UkSVycQ2TSRrMIfhMuFN.jpg" alt=""> -->
     </div>
+
+ <div id="listId">
+    <ul class="paginationTop"></ul>
+    <ul class="list">
+        // A bunch of items
+    </ul>
+    <ul class="paginationBottom"></ul>
+</div>
+
+<script>
+    var paginationTopOptions = {
+        name: "paginationTop",
+        paginationClass: "paginationTop",
+        outerWindow: 2
+    };
+    var paginationBottomOptions = {
+        name: "paginationBottom",
+        paginationClass: "paginationBottom",
+        innerWindow: 3,
+        left: 2,
+        right: 4
+    };
+    var listOptions = {
+        valueNames: ['name', 'category'],
+        page: 3,
+        plugins: [
+            ListPagination(paginationTopOptions),
+            ListPagination(paginationBottomOptions)
+        ]
+    };
+
+    var listObj = new List('listId', listOptions);
+</script>
     <script src="./index.js" type="module"></script>
 </body>
 </html>
